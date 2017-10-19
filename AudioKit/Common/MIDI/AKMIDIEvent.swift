@@ -141,6 +141,9 @@ public struct AKMIDIEvent {
                 let mirrorData = Mirror(reflecting: packet.data)
                 for (_, value) in mirrorData.children {
                     computedLength += 1
+                    if computedLength == 255{
+                        break
+                    }
                     guard let byte = value as? MIDIByte else {
                         AKLog("unable to create sysex midi byte")
                         return
