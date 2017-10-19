@@ -135,4 +135,10 @@ extension AKMIDI {
         self.sendMessage(message)
     }
 
+    /// Send a Poly Pressure message
+    public func sendPolyphonicAftertouchMessage(_ key: MIDIByte, value: MIDIByte, channel: MIDIChannel = 0) {
+        let controlCommand: MIDIByte = MIDIByte(0xA0) + channel
+        let message: [MIDIByte] = [controlCommand, key, value]
+        self.sendMessage(message)
+    }
 }

@@ -387,6 +387,22 @@ public struct AKMIDIEvent {
                   byte1: controller,
                   byte2: value)
     }
+    
+    /// Create polyphonicAftertouch event
+    ///
+    /// - Parameters:
+    ///   - key:        key number on which the pressure value has changed
+    ///   - value:      Value of the pressure
+    ///   - channel:    Channel on which the key pressure value has changed
+    ///
+    public init(polyphonicAftertouch key: MIDIByte,
+                value: MIDIByte,
+                channel: MIDIChannel) {
+        self.init(status: .polyphonicAftertouch,
+                  channel: channel,
+                  byte1: key,
+                  byte2: value)
+    }
 
     /// Array of MIDI events from a MIDI packet list poionter
     static public func midiEventsFrom(packetListPointer: UnsafePointer< MIDIPacketList>) -> [AKMIDIEvent] {
